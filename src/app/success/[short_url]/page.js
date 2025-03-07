@@ -1,6 +1,4 @@
 "use client";
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "../../theme";
 import { Box, Button, TextField } from "@mui/material";
 import { use } from "react";
 import { useRouter } from "next/navigation";
@@ -11,34 +9,29 @@ export default function SuccessPage({ params }) {
   const shortUrl = unwrappedParams.short_url;
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={styles.box}>
-        <TextField
-          value={shortUrl}
+    <Box sx={styles.box}>
+      <TextField
+        value={shortUrl}
+        variant="outlined"
+        size="small"
+        inputProps={{
+          readOnly: true,
+        }}
+        sx={styles.textField}
+        fullWidth
+      />
+      <Box sx={styles.buttonBox}>
+        <Button
           variant="outlined"
-          size="small"
-          inputProps={{
-            readOnly: true,
-          }}
-          sx={styles.textField}
-          fullWidth
-        />
-        <Box sx={styles.buttonBox}>
-          <Button
-            variant="outlined"
-            onClick={() => navigator.clipboard.writeText(shortUrl)}
-          >
-            Copy
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => router.push(`/${shortUrl}`)}
-          >
-            Open Link
-          </Button>
-        </Box>
+          onClick={() => navigator.clipboard.writeText(shortUrl)}
+        >
+          Copy
+        </Button>
+        <Button variant="contained" onClick={() => router.push(`/${shortUrl}`)}>
+          Open Link
+        </Button>
       </Box>
-    </ThemeProvider>
+    </Box>
   );
 }
 

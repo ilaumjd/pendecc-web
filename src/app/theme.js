@@ -1,6 +1,10 @@
+"use client";
 import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
+  typography: {
+    fontFamily: "var(--font-geist-sans)",
+  },
   palette: {
     primary: {
       main: "#0366d6",
