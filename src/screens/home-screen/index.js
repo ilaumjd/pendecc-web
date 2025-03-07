@@ -1,29 +1,10 @@
-"use client";
 import React from "react";
 import { TextField, Button, Box, Typography } from "@mui/material";
 
-function HomeScreen() {
+export default function HomeScreen() {
   return (
-    <Box
-      sx={{
-        bgcolor: "background.default",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 2,
-      }}
-    >
-      <Typography
-        variant="h1"
-        sx={{
-          fontSize: "2.5rem",
-          color: "text.primary",
-          marginBottom: 2,
-          fontWeight: 600,
-        }}
-      >
+    <Box sx={styles.box}>
+      <Typography variant="h1" sx={styles.typography}>
         PENDE.CC
       </Typography>
       <TextField
@@ -31,13 +12,35 @@ function HomeScreen() {
         label="Enter URL"
         variant="outlined"
         fullWidth
-        sx={{ maxWidth: 300 }}
+        sx={styles.textField}
       />
-      <Button variant="contained" sx={{ mt: 2 }}>
+      <Button variant="contained" sx={styles.button}>
         Shorten
       </Button>
     </Box>
   );
 }
 
-export default HomeScreen;
+const styles = {
+  box: {
+    bgcolor: "background.default",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 2,
+  },
+  typography: {
+    fontSize: "2.5rem",
+    color: "text.primary",
+    marginBottom: 2,
+    fontWeight: 600,
+  },
+  textField: {
+    maxWidth: 300,
+  },
+  button: {
+    mt: 2,
+  },
+};
