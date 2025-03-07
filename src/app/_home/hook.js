@@ -1,7 +1,8 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const useShortener = () => {
-  const [shortUrl, setShortUrl] = useState("");
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,7 +24,7 @@ export const useShortener = () => {
       }
 
       const data = await response.json();
-      setShortUrl(data.shortUrl);
+      router.push(`success/${data.shortUrl}`);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -31,5 +32,5 @@ export const useShortener = () => {
     }
   };
 
-  return { shortUrl, loading, error, shortenUrl };
+  return { loading, error, shortenUrl };
 };

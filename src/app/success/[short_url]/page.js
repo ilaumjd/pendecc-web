@@ -44,19 +44,6 @@ const styles = {
     justifyContent: "center",
     padding: 2,
   },
-  title: {
-    fontSize: "2.5rem",
-    color: "text.primary",
-    fontWeight: 600,
-  },
-  urlTextField: {
-    maxWidth: 300,
-    mt: 4,
-  },
-  customLinkCheckbox: {},
-  submitButton: {
-    mt: 2,
-  },
   shortUrlBox: {
     display: "flex",
     alignItems: "top",
