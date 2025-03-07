@@ -7,6 +7,7 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
+  InputAdornment,
 } from "@mui/material";
 import { useShortener } from "./hook";
 
@@ -27,6 +28,7 @@ export default function HomeScreen() {
       <Typography variant="h1" sx={styles.title}>
         PENDE.CC
       </Typography>
+
       <TextField
         id="outlined-basic"
         label="Enter URL"
@@ -37,26 +39,32 @@ export default function HomeScreen() {
         onChange={(e) => setInputUrl(e.target.value)}
       />
 
-      <Box sx={styles.shortUrlBox}>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={showCustomLink}
-              onChange={(e) => setShowCustomLink(e.target.checked)}
-            />
-          }
-          label="Custom link"
-          sx={styles.customLinkCheckbox}
+      <Box sx={styles.customLinkBox}>
+        <Checkbox
+          checked={showCustomLink}
+          onChange={(e) => setShowCustomLink(e.target.checked)}
         />
-        {showCustomLink && (
+        {showCustomLink ? (
           <TextField
             label="Custom URL"
             variant="outlined"
             fullWidth
-            sx={styles.urlTextField}
+            size="small"
+            sx={styles.customLinkTextField}
+            margin="normal"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <span style={styles.uneditablePrefix}>pende.cc/</span>
+                </InputAdornment>
+              ),
+            }}
           />
+        ) : (
+          <Typography>Custom URL</Typography>
         )}
       </Box>
+
       <Button
         variant="contained"
         sx={styles.submitButton}
@@ -86,11 +94,21 @@ const styles = {
     fontWeight: 600,
   },
   urlTextField: {
-    maxWidth: 300,
     mt: 4,
+    width: 500,
   },
-  customLinkCheckbox: {},
+  customLinkBox: {
+    display: "flex",
+    justifyContent: "flex-start",
+    height: 40,
+    width: 500,
+    alignItems: "center",
+  },
+  customLinkTextField: {
+    flex: "0 1 auto",
+    marginLeft: "16px",
+  },
   submitButton: {
-    mt: 2,
+    mt: 4,
   },
 };
