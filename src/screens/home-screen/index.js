@@ -1,19 +1,43 @@
-import styles from "./style.module.css";
+"use client";
+import React from "react";
+import { TextField, Button, Box, Typography } from "@mui/material";
 
-export default function HomeScreen() {
+function HomeScreen() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>PENDE.CC</h1>
-        <div className={styles.inputContainer}>
-          <input
-            type="url"
-            placeholder="Enter your URL here"
-            className={styles.urlInput}
-          />
-          <button className={styles.submitButton}>Shorten</button>
-        </div>
-      </main>
-    </div>
+    <Box
+      sx={{
+        bgcolor: "background.default",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 2,
+      }}
+    >
+      <Typography
+        variant="h1"
+        sx={{
+          fontSize: "2.5rem",
+          color: "text.primary",
+          marginBottom: 2,
+          fontWeight: 600,
+        }}
+      >
+        PENDE.CC
+      </Typography>
+      <TextField
+        id="outlined-basic"
+        label="Enter URL"
+        variant="outlined"
+        fullWidth
+        sx={{ maxWidth: 300 }}
+      />
+      <Button variant="contained" sx={{ mt: 2 }}>
+        Shorten
+      </Button>
+    </Box>
   );
 }
+
+export default HomeScreen;

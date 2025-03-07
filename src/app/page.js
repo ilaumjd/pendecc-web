@@ -1,5 +1,12 @@
-import HomeScreen from "@/screens/home-screen";
+"use client";
+import { ThemeProvider } from "@emotion/react";
+import HomeScreen from "../screens/home-screen";
+import { theme } from "./theme";
 
 export default function Home() {
-  return <HomeScreen />;
+  return (
+    <ThemeProvider theme={theme}>
+      <HomeScreen />;
+    </ThemeProvider>
+  );
 }
