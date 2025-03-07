@@ -1,9 +1,9 @@
 "use client";
 import { ThemeProvider } from "@emotion/react";
-import HomeScreen from "../screens/home-screen";
+import HomeScreen from "./_home";
 import { theme } from "./theme";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <ThemeProvider theme={theme}>
       <HomeScreen />
