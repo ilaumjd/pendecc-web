@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 import { useShortener } from "./hook";
 
 export default function HomeScreen() {
   const { shortUrl, loading, error, shortenUrl } = useShortener();
+
   const [inputUrl, setInputUrl] = useState("");
+  const [showCustomLink, setShowCustomLink] = useState(false);
 
   const handleShorten = () => {
     if (inputUrl) {
@@ -26,6 +35,27 @@ export default function HomeScreen() {
         value={inputUrl}
         onChange={(e) => setInputUrl(e.target.value)}
       />
+
+      <Box sx={styles.shortUrlBox}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={showCustomLink}
+              onChange={(e) => setShowCustomLink(e.target.checked)}
+            />
+          }
+          label="Custom link"
+          sx={styles.customLinkCheckbox}
+        />
+        {showCustomLink && (
+          <TextField
+            label="Custom URL"
+            variant="outlined"
+            fullWidth
+            sx={styles.urlTextField}
+          />
+        )}
+      </Box>
       <Button
         variant="contained"
         sx={styles.submitButton}
@@ -78,6 +108,7 @@ const styles = {
     maxWidth: 300,
     mt: 4,
   },
+  customLinkCheckbox: {},
   submitButton: {
     mt: 2,
   },

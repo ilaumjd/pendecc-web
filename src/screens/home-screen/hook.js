@@ -23,8 +23,7 @@ export const useShortener = () => {
       }
 
       const data = await response.json();
-      setShortUrl(data.ShortUrl);
-      alert(JSON.stringify(data.ShortUrl));
+      setShortUrl(data.shortUrl);
     } catch (err) {
       setError(err.message);
     } finally {
