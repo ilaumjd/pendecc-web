@@ -90,26 +90,32 @@ const styles = {
     padding: 2,
   },
   title: {
-    fontSize: "2.5rem",
+    fontSize: { xs: "1.8rem", sm: "2.5rem" },
     color: "text.primary",
     fontWeight: 600,
+    textAlign: "center",
   },
   urlTextField: {
     mt: 4,
-    width: 500,
+    width: { xs: "100%", sm: 500 },
+    maxWidth: "95vw",
   },
   customUrlBox: {
     display: "flex",
     justifyContent: "flex-start",
     height: 40,
-    width: 500,
+    width: { xs: "100%", sm: 500 },
+    maxWidth: "95vw",
     alignItems: "center",
   },
   customUrlTextField: {
-    flex: "0 1 auto",
+    flex: "1 1 auto",
     marginLeft: "16px",
+    width: { xs: "calc(100% - 40px)", sm: "auto" },
   },
   submitButton: {
     mt: 4,
+    width: { xs: "100%", sm: "auto" },
+    maxWidth: "95vw",
   },
 };
