@@ -12,6 +12,28 @@ export const useShortener = () => {
     setError(null);
 
     try {
+      const urlPattern = new RegExp(
+        "^(https?:\\/\\/)?" + // optional protocol
+          "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+          "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+          "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+          "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+          "(\\#[-a-z\\d_]*)?$", // fragment locator
+        "i",
+      );
+
+      if (!urlPattern.test(defaultUrl)) {
+        throw new Error("Not a proper URL");
+      }
+
+      const alphanumericPattern = /^[a-zA-Z0-9-_]+$/;
+
+      if (customUrl && !alphanumericPattern.test(customUrl)) {
+        throw new Error(
+          "Custom URL not allowed, please use a-z, A-Z, 0-9, -, _",
+        );
+      }
+
       const response = await fetch(`${API_BASE_URL}/urls`, {
         method: "POST",
         headers: {
