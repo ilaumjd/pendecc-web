@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   TextField,
   Button,
   Box,
   Typography,
-  FormControlLabel,
   Checkbox,
   InputAdornment,
 } from "@mui/material";
@@ -15,11 +14,12 @@ export default function HomeScreen() {
   const { loading, error, shortenUrl } = useShortener();
 
   const [inputUrl, setInputUrl] = useState("");
-  const [showCustomLink, setShowCustomLink] = useState(false);
+  const [showCustomUrl, setShowCustomUrl] = useState(false);
+  const [customUrl, setCustomUrl] = useState("");
 
   const handleShorten = () => {
     if (inputUrl) {
-      shortenUrl(inputUrl);
+      shortenUrl(inputUrl, customUrl);
     }
   };
 
@@ -39,18 +39,18 @@ export default function HomeScreen() {
         onChange={(e) => setInputUrl(e.target.value)}
       />
 
-      <Box sx={styles.customLinkBox}>
+      <Box sx={styles.customUrlBox}>
         <Checkbox
-          checked={showCustomLink}
-          onChange={(e) => setShowCustomLink(e.target.checked)}
+          checked={showCustomUrl}
+          onChange={(e) => setShowCustomUrl(e.target.checked)}
         />
-        {showCustomLink ? (
+        {showCustomUrl ? (
           <TextField
             label="Custom URL"
             variant="outlined"
             fullWidth
             size="small"
-            sx={styles.customLinkTextField}
+            sx={styles.customUrlTextField}
             margin="normal"
             InputProps={{
               startAdornment: (
@@ -59,6 +59,7 @@ export default function HomeScreen() {
                 </InputAdornment>
               ),
             }}
+            onChange={(e) => setCustomUrl(e.target.value)}
           />
         ) : (
           <Typography>Custom URL</Typography>
@@ -97,14 +98,14 @@ const styles = {
     mt: 4,
     width: 500,
   },
-  customLinkBox: {
+  customUrlBox: {
     display: "flex",
     justifyContent: "flex-start",
     height: 40,
     width: 500,
     alignItems: "center",
   },
-  customLinkTextField: {
+  customUrlTextField: {
     flex: "0 1 auto",
     marginLeft: "16px",
   },

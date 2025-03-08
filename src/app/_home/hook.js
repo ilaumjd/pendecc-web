@@ -7,7 +7,7 @@ export const useShortener = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const shortenUrl = async (defaultUrl) => {
+  const shortenUrl = async (defaultUrl, customUrl) => {
     setLoading(true);
     setError(null);
 
@@ -17,7 +17,7 @@ export const useShortener = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url: defaultUrl }),
+        body: JSON.stringify({ url: defaultUrl, customUrl }),
       });
 
       if (!response.ok) {
