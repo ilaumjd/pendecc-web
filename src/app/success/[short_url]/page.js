@@ -1,15 +1,24 @@
 "use client";
-import { Box, Button, TextField } from "@mui/material";
-import { use } from "react";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { use, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useFetchUrl } from "./hook";
 
 export default function SuccessPage({ params }) {
   const router = useRouter();
   const unwrappedParams = use(params);
   const shortUrl = unwrappedParams.short_url;
 
+  const { fetchUrl } = useFetchUrl(shortUrl);
+
+  useEffect(() => {
+    const data = fetchUrl();
+    alert(JSON.stringify(data));
+  }, [fetchUrl]);
+
   return (
     <Box sx={styles.box}>
+      <Typography>{`Default URL: ${shortUrl}`}</Typography>
       <TextField
         value={shortUrl}
         variant="outlined"
@@ -19,6 +28,7 @@ export default function SuccessPage({ params }) {
         }}
         sx={styles.textField}
         fullWidth
+        margin="normal"
       />
       <Box sx={styles.buttonBox}>
         <Button
