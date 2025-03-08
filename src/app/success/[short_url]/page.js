@@ -2,7 +2,7 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useFetchUrl } from "./hook";
+import { useFetchUrl } from "../../[short_url]/hook";
 
 export default function SuccessPage({ params }) {
   const router = useRouter();

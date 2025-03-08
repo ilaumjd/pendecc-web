@@ -1,39 +1,18 @@
 "use client";
+import { use, useEffect } from "react";
+import { useFetchUrl } from "./hook";
 
-import { useEffect, useState } from "react";
-import { redirect, useRouter } from "next/navigation";
-import { useParams } from "next/navigation";
-
-export default function RedirectPage() {
-  const router = useRouter();
-  const params = useParams();
+export default function RedirectPage({ params }) {
+  const unwrappedParams = use(params);
+  const { fetchUrl } = useFetchUrl(unwrappedParams.short_url);
 
   useEffect(() => {
-    const fetchAndRedirect = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/urls/${params.short_url}`,
-          {
-            method: "GET",
-          },
-        );
-
-        const data = await response.json();
-
-        if (data.defaultUrl) {
-          console.log(data.defaultUrl);
-          window.location.href = `https://${data.defaultUrl}`;
-        } else {
-          router.push("/404");
-        }
-      } catch (err) {
-        console.error("Error fetching URL:", err);
-        router.push("/error");
+    fetchUrl().then((result) => {
+      if (result.success) {
+        window.location.href = `https://${result.data?.defaultUrl}`;
       }
-    };
-
-    fetchAndRedirect();
-  }, [params.short_url, router]);
+    });
+  }, []);
 
   return <div>Redirecting...</div>;
 }
