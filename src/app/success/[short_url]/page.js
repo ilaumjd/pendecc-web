@@ -1,31 +1,33 @@
 "use client";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { use, useEffect } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFetchUrl } from "./hook";
 
 export default function SuccessPage({ params }) {
   const router = useRouter();
   const unwrappedParams = use(params);
-  const shortUrl = unwrappedParams.short_url;
 
-  const { fetchUrl } = useFetchUrl(shortUrl);
+  const [urlResult, setUrlResult] = useState({});
+  const defaultUrl = `https://${urlResult.data?.defaultUrl}`;
+  const shortUrlHash = urlResult.data?.shortUrl;
+  const shortUrl = `https://pende.cc/${urlResult.data?.shortUrl}`;
+
+  const { fetchUrl } = useFetchUrl(unwrappedParams.short_url);
 
   useEffect(() => {
-    const data = fetchUrl();
-    alert(JSON.stringify(data));
-  }, [fetchUrl]);
+    fetchUrl().then((result) => {
+      setUrlResult(result);
+    });
+  }, []);
 
   return (
     <Box sx={styles.box}>
-      <Typography>{`Default URL: ${shortUrl}`}</Typography>
+      <Typography>{`Default URL: ${defaultUrl}`}</Typography>
       <TextField
         value={shortUrl}
         variant="outlined"
         size="small"
-        inputProps={{
-          readOnly: true,
-        }}
         sx={styles.textField}
         fullWidth
         margin="normal"
@@ -37,7 +39,10 @@ export default function SuccessPage({ params }) {
         >
           Copy
         </Button>
-        <Button variant="contained" onClick={() => router.push(`/${shortUrl}`)}>
+        <Button
+          variant="contained"
+          onClick={() => router.push(`/${shortUrlHash}`)}
+        >
           Open Link
         </Button>
       </Box>

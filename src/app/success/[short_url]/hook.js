@@ -1,12 +1,9 @@
 export const useFetchUrl = (short_url) => {
   const fetchUrl = async () => {
     try {
-      const response = await fetchUrl(
-        `http://localhost:8080/urls/${short_url}`,
-        {
-          method: "GET",
-        },
-      );
+      const response = await fetch(`http://localhost:8080/urls/${short_url}`, {
+        method: "GET",
+      });
 
       const data = await response.json();
 
