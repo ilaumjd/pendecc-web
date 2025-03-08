@@ -1,7 +1,9 @@
+import { API_BASE_URL } from "@/utils/config";
+
 export const useFetchUrl = (short_url) => {
   const fetchUrl = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/urls/${short_url}`, {
+      const response = await fetch(`${API_BASE_URL}/urls/${short_url}`, {
         method: "GET",
       });
 

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/utils/config";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,7 +12,7 @@ export const useShortener = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:8080/urls", {
+      const response = await fetch(`${API_BASE_URL}/urls`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
