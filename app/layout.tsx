@@ -50,7 +50,9 @@ export default function RootLayout({
           </header>
 
           {/* Main Content */}
-          <main className="container flex-1 px-4 md:mx-auto">{children}</main>
+          <main className="container flex-1 px-4 md:mx-auto mt-10 md:mt-30">
+            {children}
+          </main>
 
           {/* Footer */}
           <footer className="sticky bottom-0 z-50 flex justify-end p-4">

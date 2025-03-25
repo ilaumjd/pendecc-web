@@ -26,7 +26,7 @@ export default function Success(props: SuccessProps) {
   }, [fetchUrl]);
 
   return (
-    <section className="flex flex-col gap-4 mx-auto max-w-md mt-10 md:mt-30">
+    <section className="flex flex-col gap-4 mx-auto max-w-md">
       <Label>
         Default URL:{" "}
         <Link href={defaultUrl} target="_blank" className="underline">
@@ -34,7 +34,7 @@ export default function Success(props: SuccessProps) {
         </Link>
       </Label>
 
-      <Input type="text" readOnly value={shortUrl} className="mt-4" />
+      <Input type="text" readOnly value={shortUrl} className="w-full h-14" />
 
       <div className="flex gap-2 mt-4">
         <Button
