@@ -26,10 +26,10 @@ export default function Success(props: SuccessProps) {
   }, [fetchUrl]);
 
   return (
-    <section>
+    <section className="flex flex-col gap-4 mx-auto max-w-md mt-10 md:mt-30">
       <Label>
         Default URL:{" "}
-        <Link href={defaultUrl} target="_blank">
+        <Link href={defaultUrl} target="_blank" className="underline">
           {defaultUrl}
         </Link>
       </Label>

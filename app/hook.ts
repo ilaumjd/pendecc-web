@@ -47,7 +47,7 @@ export const useShortener = () => {
       }
 
       const data = await response.json();
-      router.push(`success/${data.shortUrl}`);
+      router.push(`/success/${data.shortUrl}`);
     } catch (err) {
       setError((err as Error).message);
     } finally {

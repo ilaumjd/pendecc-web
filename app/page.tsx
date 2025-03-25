@@ -22,7 +22,6 @@ export default function Home() {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 mx-auto max-w-md mt-10 md:mt-30">
-      <Label className="text-4xl font-bold mb-4">PENDE.CC</Label>
       <Label className="self-start">{"Enter your long URL:"}</Label>
       <Input
         type="url"
