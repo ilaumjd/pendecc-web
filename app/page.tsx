@@ -10,7 +10,7 @@ export default function Home() {
   const [showCustomUrl, setShowCustomUrl] = useState<CheckedState>(false);
 
   return (
-    <section className="flex flex-col min-h-screen items-center justify-center gap-4 mx-auto max-w-md">
+    <section className="flex flex-col items-center justify-center gap-4 mx-auto max-w-md md:mt-30">
       <Label className="text-4xl font-bold mb-4">PENDE.CC</Label>
       <Input type="url" placeholder="Enter URL" className="w-full h-14" />
       <div className="flex items-center space-x-2 self-start h-10">
