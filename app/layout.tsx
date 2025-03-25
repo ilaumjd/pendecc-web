@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,11 +44,21 @@ export default function RootLayout({
           </header>
 
           {/* Main Content */}
-          <main className="container mx-auto flex-1">{children}</main>
+          <main className="container flex-1 px-4 md:mx-auto">{children}</main>
 
           {/* Footer */}
           <footer className="bg-background sticky bottom-0 z-50 flex justify-end p-4">
-            <Label>Created by ilaumjd</Label>
+            <Label>
+              Created by{" "}
+              <Link
+                className="text-primary hover:text-primary/80 underline"
+                href="https://ilaumjd.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ilaumjd
+              </Link>
+            </Label>
           </footer>
         </ThemeProvider>
       </body>
