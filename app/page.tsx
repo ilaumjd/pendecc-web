@@ -10,9 +10,14 @@ export default function Home() {
   const [showCustomUrl, setShowCustomUrl] = useState<CheckedState>(false);
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 mx-auto max-w-md md:mt-30">
+    <section className="flex flex-col items-center justify-center gap-4 mx-auto max-w-md mt-10 md:mt-30">
       <Label className="text-4xl font-bold mb-4">PENDE.CC</Label>
-      <Input type="url" placeholder="Enter URL" className="w-full h-14" />
+      <Label className="self-start">{"Enter your long URL:"}</Label>
+      <Input
+        type="url"
+        placeholder="https://example.com/long-url"
+        className="w-full h-14"
+      />
       <div className="flex items-center space-x-2 self-start h-10">
         <Checkbox
           id="terms"
@@ -22,7 +27,7 @@ export default function Home() {
           <div className="flex gap-1">
             <Label>{"https://pende.cc/"}</Label>
             <Input
-              placeholder="Custom URL"
+              placeholder="custom-url"
               className="w-full relative"
               disabled={false}
             />
