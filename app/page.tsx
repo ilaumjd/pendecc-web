@@ -3,11 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckedState } from "@radix-ui/react-checkbox";
 import { useState } from "react";
+import { useShortener } from "./hook";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 export default function Home() {
+  const { loading, error, shortenUrl } = useShortener();
+
+  const [inputUrl, setInputUrl] = useState("");
   const [showCustomUrl, setShowCustomUrl] = useState<CheckedState>(false);
+  const [customUrl, setCustomUrl] = useState("");
+
+  const handleShorten = () => {
+    if (inputUrl) {
+      shortenUrl(inputUrl, customUrl);
+    }
+  };
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 mx-auto max-w-md mt-10 md:mt-30">
@@ -17,6 +28,7 @@ export default function Home() {
         type="url"
         placeholder="https://example.com/long-url"
         className="w-full h-14"
+        onChange={(e) => setInputUrl(e.target.value)}
       />
       <div className="flex items-center space-x-2 self-start h-10">
         <Checkbox
@@ -30,6 +42,7 @@ export default function Home() {
               placeholder="custom-url"
               className="w-full relative"
               disabled={false}
+              onChange={(e) => setCustomUrl(e.target.value)}
             />
           </div>
         ) : (
@@ -41,7 +54,9 @@ export default function Home() {
           </Label>
         )}
       </div>
-      <Button size="lg">Shorten</Button>
+      <Button size="lg" disabled={loading} onClick={handleShorten}>
+        Shorten
+      </Button>
     </section>
   );
 }
