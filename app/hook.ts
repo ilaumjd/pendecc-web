@@ -33,11 +33,12 @@ export const useShortener = () => {
         body: JSON.stringify({ url: defaultUrl, customUrl }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Failed to shorten URL");
+        throw new Error(`${data.error} (${data.code})`);
       }
 
-      const data = await response.json();
       router.push(`/success/${data.shortUrl}`);
     } catch (err) {
       setError((err as Error).message);
