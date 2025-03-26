@@ -35,14 +35,14 @@ export default function Home() {
         className="w-full h-14"
         onChange={(e) => setInputUrl(e.target.value)}
       />
-      <div className="flex items-center space-x-2 self-start h-10">
+      <div className="flex items-center space-x-2 self-start h-10 w-full">
         <Checkbox
           id="terms"
           onCheckedChange={(checked) => setShowCustomUrl(checked)}
         />
         {showCustomUrl ? (
-          <div className="flex gap-1">
-            <Label>{"https://pende.cc/"}</Label>
+          <div className="flex gap-1 w-full">
+            <Label className="whitespace-nowrap">{"https://pende.cc/"}</Label>
             <Input
               placeholder="custom-url"
               className="w-full relative"
