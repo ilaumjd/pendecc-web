@@ -42,7 +42,7 @@ export default function RootLayout({
           <header className="sticky top-0 z-50 flex items-center p-4">
             <div className="flex-1" />
             <Label className="text-4xl font-bold cursor-pointer">
-              <Link href="/">PENDE.CC</Link>
+              <Link href="/">pende.cc</Link>
             </Label>
             <div className="flex-1 flex justify-end">
               <ModeToggle />

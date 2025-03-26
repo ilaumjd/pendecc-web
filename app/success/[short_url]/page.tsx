@@ -27,26 +27,43 @@ export default function Success(props: SuccessProps) {
 
   return (
     <section className="flex flex-col gap-4 mx-auto max-w-md">
-      <Label>
-        Default URL:{" "}
+      <Label className="text-xl font-bold">Your short link is ready!</Label>
+      <Label className="mt-2">
+        Default URL:
         <Link href={defaultUrl} target="_blank" className="underline">
           {defaultUrl}
         </Link>
       </Label>
 
-      <Input type="text" readOnly value={shortUrl} className="w-full h-14" />
+      <Input
+        type="text"
+        readOnly
+        value={shortUrl}
+        className="w-full h-14 mt-2"
+      />
 
-      <div className="flex gap-2 mt-4">
-        <Button
-          className=""
-          onClick={() => navigator.clipboard.writeText(shortUrl)}
-        >
-          Copy
+      <div className="flex self-end gap-2 mt-4">
+        <Button variant="outline">
+          <Link href="/">← Home</Link>
         </Button>
-        <Button className="">
+        <Button variant="outline">
           <Link href={shortUrlHash} target="_blank">
             Open Link
           </Link>
+        </Button>
+        <Button
+          className=""
+          onClick={async () => {
+            await navigator.clipboard.writeText(shortUrl);
+            const button = document.activeElement as HTMLButtonElement;
+            const originalText = button.textContent;
+            button.textContent = "Copied!";
+            setTimeout(() => {
+              button.textContent = originalText;
+            }, 2000);
+          }}
+        >
+          Copy
         </Button>
       </div>
     </section>
