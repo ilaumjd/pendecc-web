@@ -55,5 +55,10 @@ export const useShortener = () => {
     }
   };
 
-  return { loading, error, shortenUrl };
+  const reset = () => {
+    setLoading(false);
+    setError("");
+  };
+
+  return { loading, error, shortenUrl, reset };
 };

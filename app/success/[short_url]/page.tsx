@@ -23,7 +23,7 @@ export default function Success(props: SuccessProps) {
     fetchUrl().then((result) => {
       setUrlResult(result);
     });
-  }, [fetchUrl]);
+  }, []);
 
   return (
     <section className="flex flex-col gap-4 mx-auto max-w-md">
