@@ -38,9 +38,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Header */}
-          <header className="sticky top-0 z-50 flex items-center p-4">
+          <header className="sticky top-0 z-50 flex items-center p-4 bg-primary">
             <div className="flex-1" />
-            <Label className="text-4xl font-bold cursor-pointer">
+            <Label className="text-4xl font-bold cursor-pointer text-primary-foreground">
               <Link href="/">pende.cc</Link>
             </Label>
             <div className="flex-1 flex justify-end">
