@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const geistSans = Geist({
@@ -50,7 +49,7 @@ export default function RootLayout({
           </header>
 
           {/* Main Content */}
-          <main className="container flex-1 px-4 md:mx-auto mt-10 md:mt-30">
+          <main className="container flex-1 px-4 md:mx-auto mt-30">
             {children}
           </main>
 
