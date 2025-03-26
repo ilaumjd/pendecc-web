@@ -15,7 +15,7 @@ export default function Success(props: SuccessProps) {
 
   const { fetchUrl } = useFetchUrl(params.short_url);
   const [urlResult, setUrlResult] = useState<FetchUrlResponse>({});
-  const defaultUrl = `https://${urlResult.data?.defaultUrl}`;
+  const defaultUrl = `${urlResult.data?.defaultUrl}`;
   const shortUrlHash = `/${urlResult.data?.shortUrl}`;
   const shortUrl = `https://pende.cc${shortUrlHash}`;
 
