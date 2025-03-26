@@ -13,7 +13,9 @@ export const useShortener = () => {
     setError("");
 
     try {
-      if (!isValidUrl(defaultUrl)) {
+      const url = isValidUrl(defaultUrl);
+
+      if (!url) {
         throw new Error("Not a proper URL");
       }
 
@@ -30,7 +32,7 @@ export const useShortener = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url: defaultUrl, customUrl }),
+        body: JSON.stringify({ url, customUrl }),
       });
 
       const data = await response.json();
