@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../utils";
+import { API_BASE_URL } from "../constants";
 
 export type FetchUrlResponse = {
   success?: boolean;
