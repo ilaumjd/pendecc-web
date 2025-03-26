@@ -13,7 +13,7 @@ export default function Redirect(props: RedirectProps) {
   useEffect(() => {
     fetchUrl().then((result) => {
       if (result.success) {
-        window.location.href = `https://${result.data?.defaultUrl}`;
+        window.location.href = `${result.data?.defaultUrl}`;
       }
     });
   }, [fetchUrl]);
