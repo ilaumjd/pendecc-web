@@ -4,6 +4,7 @@ import { useFetchUrl } from "./hook";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import NotFound from "@/components/not-found";
 
 type RedirectProps = {
   params: Promise<{ short_url: string }>;
@@ -14,6 +15,8 @@ export default function Redirect(props: RedirectProps) {
   const { fetchUrl } = useFetchUrl(params.short_url);
 
   const [notFound, setNotFound] = useState(false);
+  const [counter, setCounter] = useState(0);
+
   useEffect(() => {
     fetchUrl().then((result) => {
       if (result.success) {
@@ -24,7 +27,6 @@ export default function Redirect(props: RedirectProps) {
     });
   }, [fetchUrl]);
 
-  const [counter, setCounter] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
       setCounter((prevCounter) => prevCounter + 1);
@@ -35,14 +37,7 @@ export default function Redirect(props: RedirectProps) {
   return (
     <div className="flex items-center justify-center">
       {notFound ? (
-        <div className="flex flex-col items-center justify-center text-center">
-          <Label className="text-2xl">Not Found</Label>
-          <Label className="mt-4">{`The URL https://pende.cc/${params.short_url} is not found.`}</Label>
-          <Label className="mt-2">You can claim it by yourself 😁</Label>
-          <Button className="mt-4">
-            <Link href="/">← Home</Link>
-          </Button>
-        </div>
+        <NotFound shortUrl={params.short_url} />
       ) : (
         <Label className="text-2xl">
           Redirecting
