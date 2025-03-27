@@ -5,7 +5,8 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FetchUrlResponse, useFetchUrl } from "@/app/[short_url]/hook";
-import NotFound from "@/components/not-found";
+import { NotFound } from "@/components/not-found";
+import { WaitingLabel } from "@/components/waiting-label";
 
 type SuccessProps = {
   params: Promise<{ short_url: string }>;
@@ -16,8 +17,9 @@ export default function Success(props: SuccessProps) {
   const { fetchUrl } = useFetchUrl(params.short_url);
 
   const [urlResult, setUrlResult] = useState<FetchUrlResponse>({});
-  const defaultUrl = `${urlResult.data?.defaultUrl}`;
-  const shortUrlHash = `/${urlResult.data?.shortUrl}`;
+  const data = urlResult.data;
+  const defaultUrl = `${data?.defaultUrl}`;
+  const shortUrlHash = `/${data?.shortUrl}`;
   const shortUrl = `https://pende.cc${shortUrlHash}`;
   const error = urlResult.error;
 
@@ -29,9 +31,7 @@ export default function Success(props: SuccessProps) {
 
   return (
     <section className="flex flex-col gap-4 mx-auto max-w-md">
-      {error ? (
-        <NotFound shortUrl={params.short_url} />
-      ) : (
+      {data ? (
         <div>
           <Label className="text-xl font-bold">Your short link is ready!</Label>
           <Label className="mt-2">
@@ -71,6 +71,12 @@ export default function Success(props: SuccessProps) {
               Copy
             </Button>
           </div>
+        </div>
+      ) : error ? (
+        <NotFound shortUrl={params.short_url} />
+      ) : (
+        <div className="flex items-center justify-center">
+          <WaitingLabel text="Loading" />
         </div>
       )}
     </section>

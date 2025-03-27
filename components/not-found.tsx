@@ -6,7 +6,7 @@ type NotFoundProps = {
   shortUrl: string;
 };
 
-export default function NotFound(params: NotFoundProps) {
+export function NotFound(params: NotFoundProps) {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <Label className="text-2xl">Not Found</Label>
