@@ -24,7 +24,7 @@ export default function Home() {
     }
   };
 
-  useEffect(reset, [inputUrl, customUrl]);
+  useEffect(reset, [inputUrl, showCustomUrl, customUrl]);
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 mx-auto max-w-md">
