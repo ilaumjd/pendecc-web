@@ -2,12 +2,14 @@
 import RedirectClient from "./client";
 
 export async function generateMetadata({ params }: any) {
+  const { short_url } = await params;
   return {
-    title: `pende.cc - ${params.short_url}`,
-    description: `URL Shortener - Redirecting to ${params.short_url}!`,
+    title: `pende.cc - ${short_url}`,
+    description: `URL Shortener - Redirecting to ${short_url}!`,
   };
 }
 
-export default function Redirect({ params }: any) {
-  return <RedirectClient shortUrl={params.short_url} />;
+export default async function Redirect({ params }: any) {
+  const { short_url } = await params;
+  return <RedirectClient shortUrl={short_url} />;
 }
