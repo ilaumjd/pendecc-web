@@ -5,11 +5,11 @@ import { NotFound } from "@/components/not-found";
 import { WaitingLabel } from "@/components/waiting-label";
 
 export type RedirectProps = {
-  short_url: string;
+  shortUrl: string;
 };
 
 export default function RedirectClient(props: RedirectProps) {
-  const { fetchUrl } = useFetchUrl(props.short_url);
+  const { fetchUrl } = useFetchUrl(props.shortUrl);
 
   const [notFound, setNotFound] = useState(false);
 
@@ -26,7 +26,7 @@ export default function RedirectClient(props: RedirectProps) {
   return (
     <div className="flex items-center justify-center">
       {notFound ? (
-        <NotFound shortUrl={props.short_url} />
+        <NotFound shortUrl={props.shortUrl} />
       ) : (
         <WaitingLabel text={"Redirecting"} />
       )}
