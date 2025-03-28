@@ -4,7 +4,7 @@ import RedirectClient from "./client";
 export async function generateMetadata({ params }: any) {
   return {
     title: `pende.cc - ${params.short_url}`,
-    description: `Make your long link pendecc! - Redirecting to ${params.short_url}!`,
+    description: `URL Shortener - Redirecting to ${params.short_url}!`,
   };
 }
 
