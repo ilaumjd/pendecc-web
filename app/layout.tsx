@@ -10,8 +10,8 @@ const nunito = Nunito({ subsets: ["latin"] });
 const nunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "pende.cc",
-  description: "Make your long link pendecc!",
+  title: "pende.cc - URL Shortener",
+  description: "URL Shortener - Make your long link pendecc!",
 };
 
 export default function RootLayout({
